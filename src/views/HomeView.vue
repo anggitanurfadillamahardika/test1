@@ -39,12 +39,9 @@ import axios from 'axios'
       console.log(error);
     })
 }
-onLoad();
-
 
 const onAdd = () => {
       axios.post('https://reqres.in/api/users/', state.form).then(res => {
-          onLoad()
           state.form.name = ''
       })
     }
@@ -57,7 +54,6 @@ const onEdit = (user) => {
 
 const  onUpdate = (form) => { 
        return axios.put('https://reqres.in/api/users/' + form.id , {name: state.form.name}).then(res => {
-        onLoad()
         state.form.id = ''
         state.form.name = ''
         state.updateSubmit = false
@@ -67,13 +63,15 @@ const  onUpdate = (form) => {
       })
     }
 
+
 const onDel = (user) => {
       axios.delete('https://reqres.in/api/users/' + user.id).then(res =>{
-          onLoad()
           let index = state.users.indexOf(state.form.name)
           state.users.splice(index,1)
       })
     }
+
+onLoad();
 </script>
 
 
